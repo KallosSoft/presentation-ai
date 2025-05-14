@@ -1,25 +1,25 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import { useParams, useRouter } from "next/navigation";
-import { ArrowLeft, Wand2 } from "lucide-react";
-import { useQuery } from "@tanstack/react-query";
-import { Button } from "@/components/ui/button";
-import { usePresentationState } from "@/states/presentation-state";
-import {
-  type Themes,
-  themes,
-  type ThemeProperties,
-} from "@/lib/presentation/themes";
-import { Spinner } from "@/components/ui/spinner";
-import { getCustomThemeById } from "@/app/_actions/presentation/theme-actions";
-import { getPresentation } from "@/app/_actions/presentation/presentationActions";
 import { type ImageModelList } from "@/app/_actions/image/generate";
+import { getPresentation } from "@/app/_actions/presentation/presentationActions";
+import { getCustomThemeById } from "@/app/_actions/presentation/theme-actions";
+import { Header } from "@/components/presentation/outline/Header";
+import { OutlineList } from "@/components/presentation/outline/OutlineList";
+import { PromptInput } from "@/components/presentation/outline/PromptInput";
 import { ThemeBackground } from "@/components/presentation/theme/ThemeBackground";
 import { ThemeSettings } from "@/components/presentation/theme/ThemeSettings";
-import { Header } from "@/components/presentation/outline/Header";
-import { PromptInput } from "@/components/presentation/outline/PromptInput";
-import { OutlineList } from "@/components/presentation/outline/OutlineList";
+import { Button } from "@/components/ui/button";
+import { Spinner } from "@/components/ui/spinner";
+import {
+  themes,
+  type ThemeProperties,
+  type Themes,
+} from "@/lib/presentation/themes";
+import { usePresentationState } from "@/states/presentation-state";
+import { useQuery } from "@tanstack/react-query";
+import { ArrowLeft, Wand2 } from "lucide-react";
+import { useParams, useRouter } from "next/navigation";
+import { useEffect, useRef } from "react";
 
 export default function PresentationGenerateWithIdPage() {
   const router = useRouter();

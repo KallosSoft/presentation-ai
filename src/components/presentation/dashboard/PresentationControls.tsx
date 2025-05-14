@@ -1,4 +1,3 @@
-import { Layout } from "lucide-react";
 import {
   Select,
   SelectContent,
@@ -7,6 +6,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { usePresentationState } from "@/states/presentation-state";
+import { Layout } from "lucide-react";
 
 export function PresentationControls({
   shouldShowLabel = true,
@@ -72,6 +72,7 @@ export function PresentationControls({
             <SelectItem value="ru">Russian</SelectItem>
             <SelectItem value="hi">Hindi</SelectItem>
             <SelectItem value="ar">Arabic</SelectItem>
+            <SelectItem value="th">Thai</SelectItem>
           </SelectContent>
         </Select>
       </div>

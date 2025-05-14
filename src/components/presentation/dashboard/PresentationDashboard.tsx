@@ -24,6 +24,10 @@ export function PresentationDashboard() {
     setIsGeneratingOutline,
     // We'll use these instead of directly calling startOutlineGeneration
     setShouldStartOutlineGeneration,
+    language,
+    theme,
+    imageModel,
+    presentationStyle,
   } = usePresentationState();
 
   useEffect(() => {
@@ -43,8 +47,19 @@ export function PresentationDashboard() {
     setIsGeneratingOutline(true);
 
     try {
+      const {
+        language: currentLanguage,
+        theme: currentTheme,
+        imageModel: currentImageModel,
+        presentationStyle: currentPresentationStyle,
+      } = usePresentationState.getState();
+
       const result = await createEmptyPresentation(
-        presentationInput.substring(0, 50) || "Untitled Presentation"
+        presentationInput.substring(0, 50) || "Untitled Presentation",
+        currentTheme,
+        currentLanguage,
+        currentImageModel,
+        currentPresentationStyle
       );
 
       if (result.success && result.presentation) {
@@ -68,7 +83,20 @@ export function PresentationDashboard() {
   const handleCreateBlank = async () => {
     try {
       setIsGeneratingOutline(true);
-      const result = await createEmptyPresentation("Untitled Presentation");
+      const {
+        language: currentLanguage,
+        theme: currentTheme,
+        imageModel: currentImageModel,
+        presentationStyle: currentPresentationStyle,
+      } = usePresentationState.getState();
+
+      const result = await createEmptyPresentation(
+        "Untitled Presentation",
+        currentTheme,
+        currentLanguage,
+        currentImageModel,
+        currentPresentationStyle
+      );
       if (result.success && result.presentation) {
         setCurrentPresentation(
           result.presentation.id,

@@ -61,11 +61,22 @@ export async function createPresentation(
 
 export async function createEmptyPresentation(
   title: string,
-  theme = "default"
+  theme = "default",
+  language?: string,
+  imageModel?: string,
+  presentationStyle?: string
 ) {
   const emptyContent: { slides: PlateSlide[] } = { slides: [] };
 
-  return createPresentation(emptyContent, title, theme);
+  return createPresentation(
+    emptyContent,
+    title,
+    theme,
+    undefined, // outline - not set for empty presentation
+    imageModel,
+    presentationStyle,
+    language
+  );
 }
 
 export async function updatePresentation({

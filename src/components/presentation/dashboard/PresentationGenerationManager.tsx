@@ -1,11 +1,11 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import { useCompletion } from "ai/react";
-import { toast } from "sonner";
-import { usePresentationState } from "@/states/presentation-state";
-import { SlideParser } from "../utils/parser";
 import { updatePresentation } from "@/app/_actions/presentation/presentationActions";
+import { usePresentationState } from "@/states/presentation-state";
+import { useCompletion } from "ai/react";
+import { useEffect, useRef } from "react";
+import { toast } from "sonner";
+import { SlideParser } from "../utils/parser";
 
 export function PresentationGenerationManager() {
   const {
@@ -86,6 +86,7 @@ export function PresentationGenerationManager() {
           outline,
           currentPresentationTitle,
           theme,
+          language,
         } = usePresentationState.getState();
 
         if (currentPresentationId) {
@@ -94,6 +95,7 @@ export function PresentationGenerationManager() {
             outline,
             title: currentPresentationTitle ?? "",
             theme,
+            language,
           });
         }
 
@@ -173,7 +175,7 @@ export function PresentationGenerationManager() {
     useCompletion({
       api: "/api/presentation/generate",
       onFinish: (_prompt, _completion) => {
-        const { currentPresentationId, currentPresentationTitle, theme } =
+        const { currentPresentationId, currentPresentationTitle, theme, language } =
           usePresentationState.getState();
         const parser = streamingParserRef.current;
         parser.reset();
@@ -191,6 +193,7 @@ export function PresentationGenerationManager() {
             content: { slides: slides },
             title: currentPresentationTitle ?? "",
             theme,
+            language,
           });
         }
 

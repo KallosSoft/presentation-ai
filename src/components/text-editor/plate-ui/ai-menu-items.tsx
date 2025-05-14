@@ -16,28 +16,28 @@ import {
 import { useIsSelecting } from "@udecode/plate-selection/react";
 import {
   Album,
+  Briefcase,
   Check,
+  ChevronRight,
   CornerUpLeft,
   FeatherIcon,
+  HelpCircle,
+  Languages,
   ListEnd,
   ListMinus,
   ListPlus,
   PenLine,
+  UserRound,
   Wand,
   X,
-  Languages,
-  UserRound,
-  Briefcase,
-  HelpCircle,
-  ChevronRight,
 } from "lucide-react";
 
-import { CommandGroup, CommandItem } from "./command";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { CommandGroup, CommandItem } from "./command";
 
 export type EditorChatState =
   | "cursorCommand"
@@ -185,6 +185,7 @@ const supportedLanguages: Language[] = [
   { name: "Polish", code: "pl" },
   { name: "Turkish", code: "tr" },
   { name: "Vietnamese", code: "vi" },
+  { name: "Thai", code: "th" },
 ];
 
 export const aiChatItems: Record<string, AIMenuItem> = {
